@@ -12,18 +12,24 @@ Recipe Finder is a Vue.js application that allows users to search and explore a 
   - Vue Router: For navigating between different views.
   - Axios: For making API requests to the Spoonacular API.
     
-## How to Run
-  - Clone the repository: bash
-  - Copy code: git clone https://github.com/your-username/recipe-finder.git
-  - Navigate to the project directory: bash
-  - Copy code: cd recipe-finder
-Install dependencies:
-bash
-  - Copy code: npm install
-Run the application:
-bash
-  - Copy code: npm run serve
-Open your browser and go to http://localhost:8080.
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
 ## API Key
 This project uses the Spoonacular API. Obtain your API key from Spoonacular and add it to the project by setting it in the Axios requests.
 

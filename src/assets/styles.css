@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poetsen+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 5px;
+
+    width: 90%;
+    margin: 0 auto;
+}
+.head {
+    margin-top: 50px;
+  }
+
+.head-boundary {
+    background: #F5E7DD;
+    height: 25px;
+  }
+  
+  /* Banner Styling */
+  .backdropImage {
+    position: relative;
+    width: 100%;
+    height: 55vh; /* Adjust height as needed */
+    overflow: hidden;
+}
+.backdropImage img {
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+ 
+    
+}
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.backdropImage h1 {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+  margin: auto;
+  font-size: 40px;
+}
+/* Banner Styling End */
+  footer {
+    height: 84px;
+    background: #F5E7DD;
+  }

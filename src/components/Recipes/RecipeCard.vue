@@ -21,11 +21,11 @@ export default {
       required: true
     }
   },
-  methods: {
-    getRecipeImageUrl(img) {
-      return `https://img.spoonacular.com/recipes/${img}`;
-    }
-  }
+  // methods: {
+  //   getRecipeImageUrl(img) {
+  //     return `https://img.spoonacular.com/recipes/${img}`;
+  //   }
+  // }
 };
 </script>
 

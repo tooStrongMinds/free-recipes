@@ -14,7 +14,7 @@ name: 'Navbar'
 }
 </script>
 
-<style>
+<style scoped>
 
 .nav-container {
     display: flex;

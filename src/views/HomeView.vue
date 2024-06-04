@@ -35,13 +35,13 @@ export default {
   methods: {
     async fetchRecipes() {
       try {
-        const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata`, {
           params: {
-            apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
+            // apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
             number: 10
           }
         });
-        this.recipes = response.data.results;
+        this.recipes = response.data.meals;
       } catch (error) {
         console.error('Error fetching recipes:', error.message);
       }
@@ -49,14 +49,14 @@ export default {
     async performSearch(query) {
       if (query) {
         try {
-          const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+          const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`, {
             params: {
-              apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
+              // apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
               query,
               number: 10
             }
           });
-          this.filteredRecipes = response.data.results;
+          this.filteredRecipes = response.data.meals;
           this.isSearch = true;
         } catch (error) {
           console.error('Error searching recipes:', error.message);

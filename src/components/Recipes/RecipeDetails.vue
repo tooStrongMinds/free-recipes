@@ -12,9 +12,10 @@
           <p><i class="fa-regular fa-clock"></i>{{ recipe.readyInMinutes }}</p>
         </div>
 
-        <ul class="instructions">
-          <li v-for="(instruction, index) in instructionList" :key="index">{{ instruction }}</li>
-        </ul>
+        <p>{{ recipe.instructions }}</p>
+        <ol class="instructions">
+          <li v-for="(instruction, id) in instructionList" :key="id">{{ instruction }}</li>
+        </ol>
       </div>
     </div>
   </template>
@@ -35,20 +36,30 @@
     methods: {
       async fetchRecipe() {
         try {
-          const response = await axios.get(`https://api.spoonacular.com/recipes/${this.$route.params.id}/information`, {
+          const response = await axios.get(`www.themealdb.com/api/json/v1/1/lookup.php?i=${params.id}`, 
+          {
             params: {
-              apiKey: 'ee9caa0fe2b24584853e18bcf5795756'
+              id
             }
           });
           this.recipe = response.data;
-          this.instructionList = this.recipe.instructions.split('.')
+          // this.instructionList = this.recipe.instructions.split('<li>')
         } catch (error) {
           console.error('Error fetching recipe details:', error.message);
         }
       },
-      getRecipeImageUrl(img) {
-        return `https://img.spoonacular.com/recipes/${img}`;
-      }
+    
+    // parseInstructions(instructions) {
+    //   const parser = new DOMParser();
+    //   const doc = parser.parseFromString(instructions, 'text/html');
+    //   const listItems = doc.querySelectorAll('li');
+    //   return Array.from(listItems).map(item => item.innerHTML);
+    // },
+    
+
+      // getRecipeImageUrl(img) {
+      //   return `https://img.spoonacular.com/recipes/${img}`;
+      // }
     },
     mounted() {
       this.fetchRecipe();
@@ -99,8 +110,13 @@
   font-size: 18px;
   font-weight: 500;
 }
-ul {
+ol {
   text-align: left;
+  list-style-type: decimal;
+  margin-top: 0;
+}
+li {
+  list-style-type: decimal;
 }
 
   </style>

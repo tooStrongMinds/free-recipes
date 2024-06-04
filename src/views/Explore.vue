@@ -28,9 +28,9 @@ data() {
   methods: {
     async fetchRecipes() {
       try {
-        const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+        const response = await axios.get('www.themealdb.com/api/json/v1/1/search.php', {
           params: {
-            apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
+            // apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
             number: 50  // Fetch more recipes for the Explore page
           }
         });
@@ -42,9 +42,9 @@ data() {
     async performSearch(query) {
       if (query) {
         try {
-          const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+          const response = await axios.get('www.themealdb.com/api/json/v1/1/search.php', {
             params: {
-              apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
+              // apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
               query,
               number: 50  // Fetch more recipes for search results on the Explore page
             }

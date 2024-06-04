@@ -2,6 +2,14 @@
   <span class="container">
     <img :src="icon">
     <input type="search" placeholder="Search Recipes" id="searchInput" v-model="searchQuery" @input="onInput" >
+
+    <!-- Filter Dropdown -->
+    <!-- <label for="filter"><i class="fa-solid fa-angle-down"></i></label> -->
+    <select v-model="selectedFilter" id="filter">
+    <option v-for="(category, index) in categories" :key="index">
+    {{ category }}
+    </option>
+    </select>
     </span>
 </template>
 
@@ -12,7 +20,8 @@ name: 'SearchBar',
 data() {
     return {
         icon: require('@/assets/images/Icon.svg'),
-        searchQuery: ''
+        searchQuery: '',
+        selectedFilter: 'sort by'
     }
 },
 methods: {

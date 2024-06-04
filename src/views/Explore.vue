@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-.head {
+/* .head {
   display: flex;
-}
+} */
 </style>

@@ -3,23 +3,26 @@
     <Banner />
     <SearchBar @search="performSearch"/>
   </div>
-  <div class="explore head" v-if="isSearch">
-    <h1>Results</h1>
-    <RecipeCard :recipes="filteredRecipes"/>
+  <div class="head">
+    <Filter />
+    <div class="explore" v-if="isSearch">
+      <h1>Results</h1>
+      <RecipeCard :recipes="filteredRecipes"/>
     </div>
+  </div>
 </template>
 
 <script>
-import RecipeCard from '@/components/Recipes/RecipeCard.vue'
-import Banner from '@/components/Banner.vue'
-import SearchBar from '@/components/Header/Searchbar.vue'
-import axios from 'axios'
-
+import RecipeCard from '@/components/Recipes/RecipeCard.vue';
+import Banner from '@/components/Banner.vue';
+import SearchBar from '@/components/Header/Searchbar';
+import Filter from '@/components/Filter.vue'
+import axios from 'axios';
 
 export default {
-name: 'Explore',
-components: {Banner, SearchBar, RecipeCard},
-data() {
+  name: 'Explore',
+  components: { Banner, SearchBar, RecipeCard, Filter },
+  data() {
     return {
       isSearch: false,
       filteredRecipes: []
@@ -28,13 +31,8 @@ data() {
   methods: {
     async fetchRecipes() {
       try {
-        const response = await axios.get('www.themealdb.com/api/json/v1/1/search.php', {
-          params: {
-            // apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
-            number: 50  // Fetch more recipes for the Explore page
-          }
-        });
-        this.recipes = response.data.results;
+        const response = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php');
+        this.recipes = response.data.meals;
       } catch (error) {
         console.error('Error fetching recipes:', error.message);
       }
@@ -42,14 +40,8 @@ data() {
     async performSearch(query) {
       if (query) {
         try {
-          const response = await axios.get('www.themealdb.com/api/json/v1/1/search.php', {
-            params: {
-              // apiKey: 'ee9caa0fe2b24584853e18bcf5795756',
-              query,
-              number: 50  // Fetch more recipes for search results on the Explore page
-            }
-          });
-          this.filteredRecipes = response.data.results;
+          const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+          this.filteredRecipes = response.data.meals;
           this.isSearch = true;
         } catch (error) {
           console.error('Error searching recipes:', error.message);
@@ -62,9 +54,11 @@ data() {
   mounted() {
     this.fetchRecipes();
   }
-}
+};
 </script>
 
-<style>
-
+<style scoped>
+.head {
+  display: flex;
+}
 </style>

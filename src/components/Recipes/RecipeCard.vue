@@ -1,15 +1,17 @@
 <template>
   <div class="recipes">
-      <div class="recipeCard" v-for="recipe in recipes" :key="recipe.id">
-      <img :src="recipe.image" :alt="recipe.title">
+    <div class="recipeCard" v-for="recipe in recipes" :key="recipe.idMeal">
+      <img :src="recipe.strMealThumb" :alt="recipe.strMeal">
       <div class="desc">
         <div class="desc-title">
-          <h3>{{recipe.title}}</h3>
+          <h3>{{ recipe.strMeal }}</h3>
         </div>
-        <router-link :to="{name: 'RecipeDetails', params: {id: recipe.id}}"><button>View Recipe</button></router-link>
-      </div>
+        <router-link :to="{ name: 'RecipeDetails', params: { id: recipe.idMeal } }">
+          <button>View Recipe</button>
+        </router-link>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -20,14 +22,10 @@ export default {
       type: Array,
       required: true
     }
-  },
-  // methods: {
-  //   getRecipeImageUrl(img) {
-  //     return `https://img.spoonacular.com/recipes/${img}`;
-  //   }
-  // }
+  }
 };
 </script>
+
 
 <style>
 .recipes {
@@ -48,6 +46,9 @@ export default {
   border-radius: 20px;
 
   background: #eeeeee;
+}
+h3 {
+  align-content: center;
 }
 .recipeCard img {
   /* width: 50%; */

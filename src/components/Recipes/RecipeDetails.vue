@@ -157,6 +157,19 @@ p {
   font-family: 'Poetsen One';
   line-height: 1.5;
 }
+@media screen and (max-width: 760px) {
+  .recipe-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ingredients, .instructions {
+    width: 100%;
+  }
+  h2 {
+    text-align: center;
+  }
+}
 
   </style>
   

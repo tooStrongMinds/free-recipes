@@ -4,16 +4,18 @@
     <input type="search" placeholder="Search Recipes" id="searchInput" v-model="searchQuery" @input="onInput" >
 
     <!-- Filter Dropdown -->
-    <!-- <label for="filter"><i class="fa-solid fa-angle-down"></i></label> -->
-    <select v-model="selectedFilter" id="filter">
-    <option v-for="(category, index) in categories" :key="index">
-    {{ category }}
+    <select v-model="selectedFilter" id="filter" @change="onFilterChange">
+        <option disabled value="">Sort by</option>
+    <option v-for="(category, index) in categories" :key="index" :value="category.strCategory" id="category">
+    {{ category.strCategory }}
     </option>
     </select>
     </span>
 </template>
 
 <script>
+import axios from 'axios'
+import { useRoute } from 'vue-router';
 
 export default {
 name: 'SearchBar',
@@ -21,14 +23,30 @@ data() {
     return {
         icon: require('@/assets/images/Icon.svg'),
         searchQuery: '',
-        selectedFilter: 'sort by'
+        selectedFilter: '',
+        categories: []
     }
 },
 methods: {
     onInput() {
         this.$emit('search', this.searchQuery)
+    },
+    onFilterChange() {
+        this.$emit('filter', this.selectedFilter)
+    },
+    async fetchCategory() {
+      const route = useRoute();
+      try {
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/categories.php`);
+        this.categories = response.data.categories;
+      } catch (error) {
+        console.error('Error fetching recipe details:', error.message);
+      }
     }
-}
+  },
+  mounted() {
+    this.fetchCategory();
+  }
 }
 </script>
 
@@ -68,6 +86,20 @@ input::placeholder {
 .fa-magnifying-glass {
     color: #858585;
     font-size: 18px;
+}
+#filter {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+#category {
+    font-family: 'Inter';
+}
+
+@media screen and (max-width: 760px) {
+    span {
+        width: 90%;
+    }
 }
 
 

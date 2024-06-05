@@ -1,10 +1,9 @@
 <template>
   <div class="header">
     <Banner />
-    <SearchBar @search="performSearch"/>
+    <SearchBar @search="performSearch" @filter="performFilter"/>
   </div>
   <div class="head">
-    <Filter />
     <div class="explore" v-if="isSearch">
       <h1>Results</h1>
       <RecipeCard :recipes="filteredRecipes"/>
@@ -25,7 +24,8 @@ export default {
   data() {
     return {
       isSearch: false,
-      filteredRecipes: []
+      filteredRecipes: [],
+      recipes: []
     };
   },
   methods: {
@@ -48,7 +48,26 @@ export default {
         }
       } else {
         this.isSearch = false;
+        this.filteredRecipes = []
       }
+    },
+    async performFilter(category) {
+      if (category) {
+        try {
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+        this.filteredRecipes = response.data.meals
+        this.isSearch = true
+
+      } catch (error) {
+        console.error('Error displaying category', error.message)
+      }
+      }
+      else {
+        this.isSearch = false
+        this.filteredRecipes = [];
+        // this.fetchRecipes();
+      }
+      
     }
   },
   mounted() {
@@ -58,7 +77,5 @@ export default {
 </script>
 
 <style scoped>
-/* .head {
-  display: flex;
-} */
+
 </style>

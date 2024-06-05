@@ -15,12 +15,11 @@
 import RecipeCard from '@/components/Recipes/RecipeCard.vue';
 import Banner from '@/components/Banner.vue';
 import SearchBar from '@/components/Header/Searchbar';
-import Filter from '@/components/Filter.vue'
 import axios from 'axios';
 
 export default {
   name: 'Explore',
-  components: { Banner, SearchBar, RecipeCard, Filter },
+  components: { Banner, SearchBar, RecipeCard },
   data() {
     return {
       isSearch: false,

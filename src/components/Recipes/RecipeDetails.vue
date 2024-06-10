@@ -140,6 +140,7 @@ h2 {
  }
  .instructions {
   width: 90%;
+  margin: auto;
  }
 li {
   font-family: 'Poetsen One';
